@@ -59,6 +59,25 @@
         .error {
             color: red;
         }
+
+        /* Move the close button (x mark) to the top-right corner of the modals */
+        .modal-content {
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #000;
+        }
     </style>
 </head>
 
@@ -170,6 +189,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const currentDateTime = new Date().toLocaleString();
@@ -210,42 +230,35 @@
             });
 
             $('#reservationForm').on('submit', function (e) {
-                const fromDate = $('#fromDate').val();
-                const toDate = $('#toDate').val();
-                const roomType = $('input[name="roomType"]:checked').val();
-                const roomCapacity = $('input[name="roomCapacity"]:checked').val();
-                const paymentType = $('input[name="paymentType"]:checked').val();
+                e.preventDefault();
+                const form = this;
 
-                let errorMessage = "";
-
-                if (!roomType) {
-                    errorMessage += "Please select a Room Type.\n";
-                }
-
-                if (!roomCapacity) {
-                    errorMessage += "Please select a Room Capacity.\n";
-                }
-
-                if (!paymentType) {
-                    errorMessage += "Please select a Payment Type.\n";
-                }
-
-                if (!fromDate) {
-                    errorMessage += "Please select a From Date.\n";
-                }
-
-                if (!toDate) {
-                    errorMessage += "Please select a To Date.\n";
-                }
-
-                if (fromDate && toDate && new Date(fromDate) >= new Date(toDate)) {
-                    errorMessage += "To Date must be after From Date.\n";
-                }
-
-                if (errorMessage) {
-                    alert(errorMessage);
-                    e.preventDefault();
-                }
+                Swal.fire({
+                    title: 'Add Reservation',
+                    text: 'Are you sure you want to add this reservation?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, add it!',
+                    customClass: {
+                        popup: 'swal2-smaller-popup' // Custom class for smaller size
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Reservation added successfully',
+                            showConfirmButton: false,
+                            timer: 1200,
+                            customClass: {
+                                popup: 'swal2-smaller-popup' // Custom class for smaller size
+                            }
+                        });
+                    }
+                });
             });
         });
     </script>

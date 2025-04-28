@@ -178,179 +178,46 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('storage/images/logo.png') }}">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            margin: 0;
-            padding: 20px;
-        }
 
-        h1 {
-            color: #1e396b;
-            margin-bottom: 30px;
-        }
+    <!-- SweetAlert CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
-        .dashboard-container {
-            margin-bottom: 40px;
-        }
+    <!-- SweetAlert JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-        .dashboard-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #1e396b;
-            margin-bottom: 20px;
-        }
-
-        .stats-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .stat-card h3 {
-            margin: 0;
-            font-size: 32px;
-            color: #4c8bc2;
-            font-weight: bold;
-        }
-
-        .stat-card p {
-            margin: 5px 0 0;
-            color: #666;
-            font-size: 14px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: #ffffff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        table,
-        th,
-        td {
-            border: 1px solid #dcdcdc;
-        }
-
-        th {
-            background-color: #4c8bc2;
-            color: #ffffff;
-            text-align: left;
-            padding: 10px;
-        }
-
-        td {
-            padding: 10px;
-            color: #333333;
-        }
-
-        tr:nth-child(even) {
-            background-color: #eaf4fc;
-        }
-
-        tr:hover {
-            background-color: #cce7f6;
-        }
-
-        button {
-            background-color: #6cb2e4;
-            color: #ffffff;
-            border: none;
-            padding: 8px 12px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        button:hover {
-            background-color: #4c8bc2;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 600px;
-            border-radius: 8px;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover {
-            color: #000;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .success-message {
-            background-color: #d4edda;
-            color: #155724;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-        }
-
-        .error-message {
-            background-color: #f8d7da;
-            color: #721c24;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-        }
-    </style>
 </head>
 
 <body>
     <?php if (isset($_SESSION['success_message'])): ?>
-    <div class="success-message" id="successMessage">
-        <?php    echo $_SESSION['success_message'];
-    unset($_SESSION['success_message']); ?>
-    </div>
-    <script>
-        setTimeout(() => {
-            const successMessage = document.getElementById('successMessage');
-            if (successMessage) {
-                successMessage.style.display = 'none';
-            }
-        }, 2000); 
-    </script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+    Swal.fire({
+    icon: 'success',
+    title: 'Success!',
+    text: '<?php    echo addslashes($_SESSION['success_message']); ?>',
+    timer: 3000,
+    showConfirmButton: false
+    });
+    });
+    <?php    unset($_SESSION['success_message']); ?>
+
     <?php endif; ?>
 
     <?php if (isset($_SESSION['error_message'])): ?>
-    <div class="error-message"><?php    echo $_SESSION['error_message'];
-    unset($_SESSION['error_message']); ?></div>
+
+    document.addEventListener('DOMContentLoaded', function () {
+    Swal.fire({
+    icon: 'error',
+    title: 'Error!',
+    text: '<?php    echo addslashes($_SESSION['error_message']); ?>',
+    timer: 3000,
+    showConfirmButton: false
+    });
+    });
+    <?php    unset($_SESSION['error_message']); ?>
+
     <?php endif; ?>
 
     <div class="dashboard-container">
@@ -385,7 +252,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <span class="close"
                 onclick="document.getElementById('addReservationModal').style.display='none'">&times;</span>
             <h2>Add New Reservation</h2>
-            <form method="POST" action="{{ route('reservations.store') }}">
+            <form method="POST" id="addReservationForm" action="{{ route('reservations.store') }}">
                 @csrf
                 <div class="form-group">
                     <label for="customer_name">Customer Name</label>
@@ -483,7 +350,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         @csrf
                         @method('DELETE')
                         <button type="submit" name="delete" class="btn btn-danger btn-sm"
-                            onclick="return confirm('Are you sure you want to delete this reservation?');">Delete</button>
+                            onclick="return confirmDelete(event);">Delete</button>
                     </form>
                 </td>
             </tr>
@@ -585,6 +452,116 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             document.getElementById('from_date').addEventListener('change', function () {
                 document.getElementById('to_date').min = this.value;
+            });
+        });
+        function confirmDelete(event) {
+            event.preventDefault();
+            const form = event.target.closest('form');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+
+            return false;
+        }
+        document.getElementById('editReservationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const form = this;
+
+            Swal.fire({
+                title: 'Update Reservation',
+                text: 'Are you sure you want to update this reservation?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, update it!',
+                customClass: {
+                    popup: 'swal2-smaller-popup' // Custom class for smaller size
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Updated reservation successfully',
+                        showConfirmButton: false,
+                        timer: 1200,
+                        customClass: {
+                            popup: 'swal2-smaller-popup' // Custom class for smaller size
+                        }
+                    });
+                }
+            });
+        });
+
+        document.getElementById('addReservationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const form = this;
+
+            Swal.fire({
+                title: 'Add Reservation',
+                text: 'Are you sure you want to add this reservation?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, add it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Reservation added successfully',
+                        showConfirmButton: false,
+                        timer: 1200
+                    });
+                }
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const table = document.querySelector('table');
+            const headers = table.querySelectorAll('th');
+            const rows = Array.from(table.querySelectorAll('tbody tr'));
+
+            headers.forEach((header, index) => {
+                header.style.cursor = 'pointer';
+                header.addEventListener('click', () => {
+                    const isAscending = header.classList.contains('asc');
+                    headers.forEach(h => h.classList.remove('asc', 'desc'));
+                    header.classList.toggle('asc', !isAscending);
+                    header.classList.toggle('desc', isAscending);
+
+                    const sortedRows = rows.sort((a, b) => {
+                        const aText = a.children[index].textContent.trim();
+                        const bText = b.children[index].textContent.trim();
+
+                        if (!isNaN(aText) && !isNaN(bText)) {
+                            return isAscending ? bText - aText : aText - bText;
+                        }
+
+                        return isAscending
+                            ? bText.localeCompare(aText)
+                            : aText.localeCompare(bText);
+                    });
+
+                    const tbody = table.querySelector('tbody');
+                    tbody.innerHTML = '';
+                    sortedRows.forEach(row => tbody.appendChild(row));
+                });
             });
         });
     </script>
