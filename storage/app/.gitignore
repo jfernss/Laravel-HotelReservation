@@ -2,3 +2,6 @@
 !private/
 !public/
 !.gitignore
+
+# Ensure the public/images folder is not ignored
+!public/images/
