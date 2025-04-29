@@ -104,7 +104,7 @@
 </head>
 
 <body>
-    @include('layouts.topbar') {{-- Include the reusable topbar --}}
+    @include('layouts.topbar') 
     <div class="contact-container">
         <div class="image-container">
             <img src="{{ asset('storage/images/contact.jpg') }}" alt="Resort Image">

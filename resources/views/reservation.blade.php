@@ -60,7 +60,7 @@
             color: red;
         }
 
-        /* Move the close button (x mark) to the top-right corner of the modals */
+
         .modal-content {
             position: relative;
         }
@@ -82,7 +82,7 @@
 </head>
 
 <body>
-    @include('layouts.topbar') {{-- Include the topbar here --}}
+    @include('layouts.topbar') 
     <div class="container-fluid">
         <form class="reservation-form" action="{{ route('reservation.details') }}" method="POST" id="reservationForm">
             @csrf {{-- Add CSRF token for security --}}
@@ -242,7 +242,7 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes, add it!',
                     customClass: {
-                        popup: 'swal2-smaller-popup' // Custom class for smaller size
+                        popup: 'swal2-smaller-popup' 
                     }
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -254,7 +254,7 @@
                             showConfirmButton: false,
                             timer: 1200,
                             customClass: {
-                                popup: 'swal2-smaller-popup' // Custom class for smaller size
+                                popup: 'swal2-smaller-popup' 
                             }
                         });
                     }

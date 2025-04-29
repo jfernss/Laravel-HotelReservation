@@ -85,7 +85,7 @@ if ($paymentType === 'Cheque') {
 // Total bill
 $totalBill = $subTotal + $additionalCharge - $discountAmount;
 
-// Insert reservation into the database
+// Insert reservation into database
 try {
     $stmt = $pdo->prepare("INSERT INTO reservations (customer_name, contact_number, room_type, room_capacity, payment_type, from_date, to_date, num_days, sub_total, additional_charge, discount_amount, total_bill, reservation_time) VALUES (:customerName, :contactNumber, :roomType, :roomCapacity, :paymentType, :fromDate, :toDate, :numDays, :subTotal, :additionalCharge, :discountAmount, :totalBill, :reservationTime)");
     $stmt->execute([

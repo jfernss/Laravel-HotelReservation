@@ -47,7 +47,7 @@
 </head>
 
 <body>
-    @include('layouts.topbar') {{-- Include the topbar here --}}
+    @include('layouts.topbar')
     <header class="hero-section">
         <div class="container text-center hero-content d-column">
             <h1>WELCOME TO DARREL & AYIEN'S <span class="highlight">FIVE STAR HOTEL</span></h1>

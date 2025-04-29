@@ -180,11 +180,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         href="https://cdn.jsdelivr.net/npm/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker.min.css">
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('storage/images/logo.png') }}">
-
-    <!-- SweetAlert CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-
-    <!-- SweetAlert JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </head>
@@ -430,7 +426,6 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             document.getElementById('edit_from_date').value = reservation.from_date;
             document.getElementById('edit_to_date').value = reservation.to_date;
 
-            // Set the form action dynamically
             document.getElementById('editReservationForm').action = `/admin/reservations/${reservation.id}`;
             document.getElementById('editReservationModal').style.display = 'block';
         }
@@ -487,7 +482,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, update it!',
                 customClass: {
-                    popup: 'swal2-smaller-popup' // Custom class for smaller size
+                    popup: 'swal2-smaller-popup'
                 }
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -499,7 +494,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         showConfirmButton: false,
                         timer: 1200,
                         customClass: {
-                            popup: 'swal2-smaller-popup' // Custom class for smaller size
+                            popup: 'swal2-smaller-popup'
                         }
                     });
                 }

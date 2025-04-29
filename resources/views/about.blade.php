@@ -34,7 +34,7 @@
 </head>
 
 <body>
-    @include('layouts.topbar') {{-- Include the reusable topbar --}}
+    @include('layouts.topbar') 
     <div class="container mt-5">
         <div class="content-section p-4 mb-5 rounded shadow">
             <h2 style="color: #334D99;">Our Mission</h2>

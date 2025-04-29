@@ -68,7 +68,7 @@
     <div class="login-container">
         <h1>Admin Login</h1>
         <form action="{{ route('admin.login.submit') }}" method="POST">
-            @csrf {{-- Add CSRF token for security --}}
+            @csrf 
             <div class="mb-3">
                 <label for="admin_username" class="form-label">Username</label>
                 <input type="text" class="form-control" id="admin_username" name="admin_username" required>
