@@ -53,7 +53,7 @@
             <h1>WELCOME TO DARREL & AYIEN'S <span class="highlight">FIVE STAR HOTEL</span></h1>
             <p>Where luxury meets tranquility. Your private paradise with stunning pool views and tropical gardens
                 awaits.</p>
-            <a href="reservation.php" class="btn btn-reserve btn-lg px-5 py-3 fs-5 fw-semibold text-white"
+            <a href="{{ route('reservation') }}" class="btn btn-reserve btn-lg px-5 py-3 fs-5 fw-semibold text-white"
                 style="background-color: #1A2D4A;">Reserve Now</a>
         </div>
     </header>
