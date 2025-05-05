@@ -9,6 +9,24 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('storage/images/logo.png') }}">
 
     <style>
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-heading);
+        }
+
+        h2,
+        h3 {
+            font-family: var(--font-subheading);
+        }
+
+        body {
+            font-family: var(--font-body);
+        }
+
         body {
             background: linear-gradient(135deg, #1e396b, #6cb2e4);
             height: 100vh;
@@ -68,7 +86,7 @@
     <div class="login-container">
         <h1>Admin Login</h1>
         <form action="{{ route('admin.login.submit') }}" method="POST">
-            @csrf 
+            @csrf
             <div class="mb-3">
                 <label for="admin_username" class="form-label">Username</label>
                 <input type="text" class="form-control" id="admin_username" name="admin_username" required>

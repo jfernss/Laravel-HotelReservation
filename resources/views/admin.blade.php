@@ -182,7 +182,25 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="icon" type="image/x-icon" href="{{ asset('storage/images/logo.png') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-heading) !important;
+        }
 
+        h2,
+        h3 {
+            font-family: var(--font-subheading) !important;
+        }
+
+        body {
+            font-family: var(--font-body) !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -454,7 +472,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             const form = event.target.closest('form');
 
             Swal.fire({
-                title: 'Are you sure?',
+                title: 'Are you sure you want to delete this reservation?',
                 text: "You won't be able to revert this!",
                 icon: 'warning',
                 showCancelButton: true,

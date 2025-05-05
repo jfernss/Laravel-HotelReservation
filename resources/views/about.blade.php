@@ -9,6 +9,24 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('storage/images/logo.png') }}">
 
     <style>
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-heading) !important;
+        }
+
+        h2,
+        h3 {
+            font-family: var(--font-subheading) !important;
+        }
+
+        body {
+            font-family: var(--font-body) !important;
+        }
+
         .content-section {
             background-color: #fafafa;
             border: 2px solid #E0E0E0;
@@ -34,7 +52,7 @@
 </head>
 
 <body>
-    @include('layouts.topbar') 
+    @include('layouts.topbar')
     <div class="container mt-5">
         <div class="content-section p-4 mb-5 rounded shadow">
             <h2 style="color: #334D99;">Our Mission</h2>

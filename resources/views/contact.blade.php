@@ -9,7 +9,22 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link rel="icon" type="image/x-icon" href="{{ asset('storage/images/logo.png') }}">
     <style>
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-heading) !important;
+        }
+
+        h2,
+        h3 {
+            font-family: var(--font-subheading) !important;
+        }
+
         body {
+            font-family: var(--font-body) !important;
             background-color: #F8F9FA;
         }
 
@@ -104,7 +119,7 @@
 </head>
 
 <body>
-    @include('layouts.topbar') 
+    @include('layouts.topbar')
     <div class="contact-container">
         <div class="image-container">
             <img src="{{ asset('storage/images/contact.jpg') }}" alt="Resort Image">

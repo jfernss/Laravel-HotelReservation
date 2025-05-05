@@ -165,6 +165,24 @@ try {
             text-decoration: none;
             border-radius: 5px;
         }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-heading) !important;
+        }
+
+        h2,
+        h3 {
+            font-family: var(--font-subheading) !important;
+        }
+
+        body {
+            font-family: var(--font-body) !important;
+        }
     </style>
 </head>
 

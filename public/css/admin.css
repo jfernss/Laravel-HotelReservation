@@ -1,11 +1,12 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: var(--font-body);
     background-color: #f9f9f9;
     margin: 0;
     padding: 20px;
 }
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
     color: #1e396b;
     margin-bottom: 30px;
 }
@@ -15,6 +16,7 @@ h1 {
 }
 
 .dashboard-title {
+    font-family: var(--font-heading);
     font-size: 24px;
     font-weight: bold;
     color: #1e396b;
@@ -43,6 +45,7 @@ h1 {
 }
 
 .stat-card p {
+    font-family: var(--font-body);
     margin: 5px 0 0;
     color: #666;
     font-size: 14px;
@@ -63,6 +66,7 @@ td {
 }
 
 th {
+    font-family: var(--font-body);
     background-color: #4c8bc2;
     color: #ffffff;
     text-align: left;
@@ -70,6 +74,7 @@ th {
 }
 
 td {
+    font-family: var(--font-body);
     padding: 10px;
     color: #333333;
 }

@@ -13,6 +13,24 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('storage/images/logo.png') }}">
 
     <style>
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: var(--font-heading) !important;
+        }
+
+        h2,
+        h3 {
+            font-family: var(--font-subheading) !important;
+        }
+
+        body {
+            font-family: var(--font-body) !important;
+        }
+
         .reservation-form {
             max-width: 100% !important;
             margin: 2rem 2rem !important;
@@ -60,7 +78,6 @@
             color: red;
         }
 
-
         .modal-content {
             position: relative;
         }
@@ -82,7 +99,7 @@
 </head>
 
 <body>
-    @include('layouts.topbar') 
+    @include('layouts.topbar')
     <div class="container-fluid">
         <form class="reservation-form" action="{{ route('reservation.details') }}" method="POST" id="reservationForm">
             @csrf {{-- Add CSRF token for security --}}
@@ -242,7 +259,7 @@
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'Yes, add it!',
                     customClass: {
-                        popup: 'swal2-smaller-popup' 
+                        popup: 'swal2-smaller-popup'
                     }
                 }).then((result) => {
                     if (result.isConfirmed) {
@@ -254,7 +271,7 @@
                             showConfirmButton: false,
                             timer: 1200,
                             customClass: {
-                                popup: 'swal2-smaller-popup' 
+                                popup: 'swal2-smaller-popup'
                             }
                         });
                     }
